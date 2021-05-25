@@ -17,4 +17,13 @@ with open('./speech.mp3', 'wb') as audio_file:
                          accept='audio/mp3', voice='en-US_AllisonV3Voice').get_result()
     audio_file.write(res.content)
 
+#  Convert from a file
+with open('churchill.txt', 'r') as f:
+    text = f.readlines()
 
+text = [line.replace('\n', '') for line in text]
+text = ''.join(str(line) for line in text)
+
+with open('./churchill.mp3', 'wb') as audio_file:
+    res = tts.synthesize(text, accept='audio/mp3', voice='en-US_AllisonV3Voice').get_result()
+    audio_file.write(res.content)
