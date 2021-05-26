@@ -17,7 +17,7 @@ with open('./speech.mp3', 'wb') as audio_file:
                          accept='audio/mp3', voice='en-US_AllisonV3Voice').get_result()
     audio_file.write(res.content)
 
-#  Convert from a file
+# Convert from a file
 with open('churchill.txt', 'r') as f:
     text = f.readlines()
 
@@ -26,4 +26,12 @@ text = ''.join(str(line) for line in text)
 
 with open('./churchill.mp3', 'wb') as audio_file:
     res = tts.synthesize(text, accept='audio/mp3', voice='en-US_AllisonV3Voice').get_result()
+    audio_file.write(res.content)
+
+# Using a new language model
+koreanVoice = "ko-KR_HyunjunVoice"
+koreanProverbs = """고생 끝에 낙이 온다"""
+
+with open('./koreanproverbs.mp3', 'wb') as audio_file:
+    res = tts.synthesize(koreanProverbs, accept='audio/mp3', voice=koreanVoice).get_result()
     audio_file.write(res.content)
